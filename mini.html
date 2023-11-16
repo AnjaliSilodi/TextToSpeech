@@ -1,0 +1,73 @@
+<html lang="en">
+   <head>
+      <title>Text to Speech Converter</title>
+      <style>
+         body {
+         background: url(img.jpg) no-repeat ;
+         display: flex;
+         align-items: center;
+         flex-direction: column;
+         background-size: 2000px 1100px;
+         }
+         h1 {
+         margin-top: 50px;
+         color:white;
+         }
+         textarea {
+         width: 45%;
+         height: 150px;
+         margin: 20px 0;
+         font-size: 16px;
+         padding: 10px;
+         border: 2px solid black;
+         box-shadow:5px 10px 10px ;
+         border-radius: 10px;
+         resize: none;
+         background:rgba(255,255,255, 0.8);
+         }
+         button {
+         padding: 10px 10px;
+         font-size: 16px;
+         cursor: pointer;
+         background-color: midnightblue;
+         color: white;
+         border: none;
+         border-radius: 5px;
+         margin-right: 10px;
+         }
+         button:hover {
+         background-color: orange;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>
+         <center>Welcome! <br>
+            Text to speech converter
+         </center>
+      </h1>
+      <textarea id="textToRead" placeholder="Enter text to convert"></textarea>
+      <br>
+      <button onclick="convertToSpeech()">Convert to Speech</button><br>
+      <button onclick="stopSpeech()">Stop</button>
+      <script>
+         if ('speechSynthesis' in window) {
+             var synth = window.speechSynthesis;
+         } else {
+             alert('Your browser does not support the Speech Synthesis API.');
+         }
+         
+         function convertToSpeech() {
+             var textToRead = document.getElementById('textToRead').value;
+         
+             var utterance = new SpeechSynthesisUtterance(textToRead);
+         
+             synth.speak(utterance);
+         }
+         
+         function stopSpeech() {
+             synth.cancel();
+         }
+      </script>
+   </body>
+</html>
